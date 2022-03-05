@@ -58,6 +58,10 @@ Route::group(['prefix'=>'admin','middleware'=>'App\Http\Middleware\IsUser'], fun
     Route::get('/getUpdateUserData',[UserController::class,'getUpdateUserData'])
         ->name('getUpdateUserData');
     Route::post('/updateUserData',[UserController::class,'updateUserData'])->name('updateUserData');
+    Route::get('/getResponseForm/{id}',[ArticleController::class,'getResponseForm'])->name('getResponseForm')
+        ->where(['id'=>'[0-9]+']);
+    Route::post('/createResponse/{id}',[ArticleController::class,'createResponse'])->name('createResponse')
+    ->where(['id'=>'[0-9]+']);
 });
 
 Route::group(['prefix'=>'visitor','middleware'=>'App\Http\Middleware\IsVisitor'], function(){
@@ -77,10 +81,7 @@ Route::view('/visitorLayouts','layouts.visitorLayouts');
 
 Route::view('/index','index');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[VisitorController::class,'allArticle']);
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [ArticleController::class,'allArticle'])
+    ->name('dashboard');

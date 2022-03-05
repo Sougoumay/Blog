@@ -30,7 +30,18 @@
                                     <div class="form-group">
                                         <label for="exampleInputName1">Remark</label>
                                         @foreach($article->remarks as $comment)
-                                            <p class="align-content-around"> {{$loop->iteration}} - {{$comment->remark}}</p>
+                                            <li class="nav-item dropdown">
+                                                <a href="#"  data-toggle="dropdown">
+                                                    <p class="align-content-around"> {{$loop->iteration}} - {{$comment->remark}}</p>
+                                                    <i class="fa fa-angle-down"></i>
+                                                </a>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li><a class="text-white" href="{{route('getResponseForm',$comment->id)}}">Response</a></li>
+                                                    @foreach($comment->responses as $response)
+                                                        <li>{{$response->answer}}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </li>
                                         @endforeach
                                         <input type="text" value ="{{old('remark')}}" name="remark" class="form-control" id="exampleInputName1" placeholder="Remark">
                                     </div>

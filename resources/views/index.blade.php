@@ -75,32 +75,6 @@
                         <div class="col-md-6 grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Hobby</h4>
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <th>Title</th>
-                                            <th>Status</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach($user->hobbys as $hobby)
-                                            <tr>
-                                                <td>{{$hobby->title}}</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-primary">Primary</button>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 grid-margin stretch-card">
-                            <div class="card">
-                                <div class="card-body">
                                     <h4 class="card-title">Language</h4>
                                     <ol>
                                         @foreach($user->languages as $language)
@@ -109,34 +83,6 @@
                                             </li>
                                         @endforeach
                                     </ol>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 grid-margin stretch-card">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Language</h4>
-                                    <table class="table table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th>Langage</th>
-                                            <th>Level</th>
-                                            <th>Status</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach($user->languages as $language)
-                                            <tr>
-                                                <td>{{$language->langue}}</td>
-                                                <td>{{$language->level}}</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-primary">Primary</button>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-
-                                        </tbody>
-                                    </table>
                                 </div>
                             </div>
                         </div>

@@ -19,4 +19,9 @@ class Remark extends Model
     {
         return $this->belongsTo(Article::class,'remark_id','id');
     }
+
+    public function responses()
+    {
+        return $this->hasMany(Responses::class, 'remark_id','id');
+    }
 }

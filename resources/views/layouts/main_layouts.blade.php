@@ -117,9 +117,18 @@
                                 </p>
                             </div>
                             <div class="preview-item-content">
-                                <p class="p-3 mb-0 text-center">
-                                    <a class="nav-link" href="{{route('logout')}}">Log out</a>
-                                </p>
+                                <form class="forms-sample"  method="post" action="{{route('logout')}}">
+                                    @csrf
+                                    @if($errors->any())
+                                        <ul>
+                                            @foreach($errors->all() as $error)
+                                                <li class="alert-danger">{{$error}}</li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
+                                    <button type="submit" class="btn btn-primary mr-2">Log out</button>
+                                </form>
+
                             </div>
                         </div>
                     </li>
