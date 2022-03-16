@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class RemarkRequest extends FormRequest
 {
@@ -24,8 +25,10 @@ class RemarkRequest extends FormRequest
     public function rules()
     {
         return [
-            'remark'=>'required|min:3|max:200',
-            'status'=>'string'
+            'remark'=>'string|required|min:3|max:200',
+            'status'=>['string',Rule::in(['pending','approved'])],
+            'name'=>'string|required',
+            'email'=>'email:dns,rfc|required'
         ];
     }
 }

@@ -69,9 +69,6 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li>
-                                    <a href="{{route('login')}}">Se connecter</a>
-                                </li>
                             </ul><!-- Ul end -->
                         </div><!-- header right end -->
                     </div><!-- logo area end -->

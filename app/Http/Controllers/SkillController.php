@@ -11,6 +11,7 @@ use App\Models\Hobby;
 use App\Models\Language;
 use App\Models\Software;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SkillController extends Controller
 {
@@ -28,7 +29,7 @@ class SkillController extends Controller
             'institute'=>$academicRequest->get('institute'),
             'country'=>$academicRequest->get('country'),
             'city'=>$academicRequest->get('city'),
-            'user_id'=>1
+            'user_id'=>Auth::id()
         ]);
 
         return back();

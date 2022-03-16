@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        User::create([
+        /**User::create([
             'name'=>'Hamid',
             'first_name'=>'Sougouma Ali',
             'rue'=>'17 Allee Pierre Beregovoy',
@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
             'profile'=>'image_621943c8b4c961.11803489.jpg',
             'password'=>Hash::make('password')
         ]);
+
 
         Academic::create(
             [
@@ -181,7 +182,8 @@ class DatabaseSeeder extends Seeder
                 'title'=>'FootBall',
                 'user_id'=>1
             ]
-        );
+        );*/
+
 
         Article::create([
             'title'=>'Intelligence Artificielle',
@@ -209,7 +211,7 @@ class DatabaseSeeder extends Seeder
                 domaines."
         ]);
 
-
+        /**
         Article::create(
             [
                 'title'=>'Cloud',
@@ -264,7 +266,7 @@ La maîtrise du patrimoine informationnel, constitué de documents et de donnée
 
 Au cœur des enjeux de sécurisation de la société numérique et en matière d'innovation, la cybersécurité devrait tirer parti des recherches dans le domaine des mégadonnées (big data) qui combineront apprentissage automatique et intelligence artificielle."
             ]
-        );
+        );*/
 
 
     }

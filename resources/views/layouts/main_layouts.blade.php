@@ -21,6 +21,17 @@
     <link rel="stylesheet" href="{{asset("assets/css/style.css")}}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset("assets/images/favicon.png")}}" />
+    <!-- include libraries(jQuery, bootstrap)
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+     include summernote css/js
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script> -->
+    <!-- SummerNote CSS LINK -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="container-scroller">
@@ -117,7 +128,7 @@
                                 </p>
                             </div>
                             <div class="preview-item-content">
-                                <form class="forms-sample"  method="post" action="{{route('logout')}}">
+                                <form class="forms-sample text-center"  method="post" action="{{route('logout')}}">
                                     @csrf
                                     @if($errors->any())
                                         <ul>
@@ -126,7 +137,7 @@
                                             @endforeach
                                         </ul>
                                     @endif
-                                    <button type="submit" class="btn btn-primary mr-2">Log out</button>
+                                    <button type="submit" class="btn btn-link text-white">Log out</button>
                                 </form>
 
                             </div>
@@ -164,5 +175,19 @@
 <!-- Custom js for this page -->
 <script src="{{asset("assets/js/dashboard.js")}}"></script>
 <!-- End custom js for this page -->
+
+<!--<script>
+    $(document).ready(function() {
+        $('#summernote').summernote();
+    });
+</script> -->
+<!-- SummerNote JS LINK-->
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#my_summernote").summernote();
+        $('.dropdown-toggle').dropdown();
+    });
+</script>
 </body>
 </html>

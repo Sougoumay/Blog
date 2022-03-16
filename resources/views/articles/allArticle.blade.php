@@ -3,7 +3,6 @@
     <div class="main-panel">
         <div class="content-wrapper">
             <div class="page-header">
-                <h3 class="page-title"> Articles </h3>
             </div>
             <div class="row">
                 <div class="col-md-12 d-flex align-items-stretch">
@@ -12,14 +11,17 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title">Articles</h5>
-                                    @foreach($articles as $article)
-                                        <a href="{{route('viewArticle',$article->id)}}">
-                                            <h1 class="card-title">{{$article->title}}</h1>
-                                            <div class="align-content-around">
-                                                <img width="100%" height="1%" src="{{asset('/uploads/profile').'/'.$article->image}}"/>
-                                            </div>
-                                        </a>
-                                    @endforeach
+                                    <u1>
+                                        @foreach($articles as $article)
+                                            <a href="{{route('viewArticle',$article->id)}}">
+                                                <li>
+                                                    <h1 class="card-title">{{$article->title}}</h1>
+                                                    <img width="5%" height="5%" src="{{asset('/uploads/profile').'/'.$article->image}}"/>
+                                                </li>
+                                            </a>
+                                        @endforeach
+                                    </u1>
+
                                 </div>
                                 <div class="d-flex justify-content-center">
                                     {!! $articles->links() !!}

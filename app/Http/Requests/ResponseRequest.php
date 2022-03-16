@@ -24,7 +24,7 @@ class ResponseRequest extends FormRequest
     public function rules()
     {
         return [
-            'answer'=>'string|required'
+            'answer'=>'string|required',
         ];
     }
 }

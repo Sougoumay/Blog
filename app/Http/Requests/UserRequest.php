@@ -30,7 +30,7 @@ class UserRequest extends FormRequest
             'code_postale'=>'string',
             'country'=>'string|required',
             'phone_number'=>'integer',
-            'email'=>'string|required'
+            'email'=>'email:rfc,dns'
         ];
     }
 }

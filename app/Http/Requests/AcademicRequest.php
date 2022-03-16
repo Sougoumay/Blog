@@ -24,8 +24,8 @@ class AcademicRequest extends FormRequest
     public function rules()
     {
         return [
-            'start_date'=>'string|max:4|min:4',
-            'end_date'=>'string|max:4|min:4',
+            'start_date'=>'date|dateFormat:Y-m-d',
+            'end_date'=>'date|after:start_date|dateFormat:Y-m-d',
             'institute'=>'string',
             'country'=>'string|min:3',
             'city'=>'string|min:2'

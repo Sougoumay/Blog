@@ -12,7 +12,7 @@ class VisitorController extends Controller
 {
     function allArticle()
     {
-        $articles = Article::simplePaginate(2);
+        $articles = Article::simplePaginate(3);
         return view('visitors.allArticle',compact('articles'));
     }
 
@@ -34,7 +34,9 @@ class VisitorController extends Controller
     {
         Remark::create([
             'remark'=>$remarkRequest->get('remark'),
-            'article_id'=>$id
+            'article_id'=>$id,
+            'name'=>$remarkRequest->get('name'),
+            'email'=>$remarkRequest->get('email')
         ]);
 
         return redirect()->route('visitor.viewArticle',$id);

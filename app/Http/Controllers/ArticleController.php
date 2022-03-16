@@ -36,7 +36,7 @@ class ArticleController extends Controller
 
     function allArticle()
     {
-        $articles = Article::simplePaginate(2);
+        $articles = Article::simplePaginate(3);
         return view('articles.allArticle',compact('articles'));
     }
 
@@ -49,9 +49,13 @@ class ArticleController extends Controller
 
     function createRemark(RemarkRequest $remarkRequest, $id)
     {
+        //dd($remarkRequest->get('name'));
         Remark::create([
             'remark'=>$remarkRequest->get('remark'),
-            'article_id'=>$id
+            'article_id'=>$id,
+            'name'=>$remarkRequest->get('name'),
+            'email'=>$remarkRequest->get('email'),
+
         ]);
 
         return redirect()->route('viewArticle',$id);
@@ -88,5 +92,4 @@ class ArticleController extends Controller
         return back();
     }
 
-    // TODO : il faut aussi creer les middlewares et separer les routes
 }

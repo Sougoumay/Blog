@@ -12,13 +12,11 @@
                         <a href="{{route('visitor.viewArticle',$article->id)}}">
                             <h1 class="card-title">{{$article->title}}</h1>
                             <div class="align-content-around">
-                                <img width="100%" height="1%" src="{{asset('/uploads/profile').'/'.$article->image}}"/>
+                                <img width="50%" height="1%" src="{{asset('/uploads/profile').'/'.$article->image}}"/>
                             </div>
                         </a>
                     @endforeach
-                    <div class="d-flex justify-content-center">
-                        {!! $articles->links() !!}
-                    </div>
+                    {!! $articles->links() !!}
 
                 </div>
             </div>

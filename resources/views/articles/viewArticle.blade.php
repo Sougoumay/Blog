@@ -2,9 +2,6 @@
 @section('main')
     <div class="main-panel">
         <div class="content-wrapper">
-            <div class="page-header">
-                <h3 class="page-title"> Articles </h3>
-            </div>
             <div class="row">
                 <div class="col-md-12 d-flex align-items-stretch">
                     <div class="row">
@@ -18,7 +15,7 @@
                                     </div>
                                     <p class="align-content-around">{{$article->content}}</p>
                                 </div>
-                                <form class="forms-sample"  method="post" action="{{route('createRemark', $article->id)}}">
+                                <form class="forms-sample col-12"  method="post" action="{{route('createRemark', $article->id)}}">
                                     @csrf
                                     @if($errors->any())
                                         <ul>
@@ -31,18 +28,22 @@
                                         <label for="exampleInputName1">Remark</label>
                                         @foreach($article->remarks as $comment)
                                             <li class="nav-item dropdown">
-                                                <a href="#"  data-toggle="dropdown">
+                                                <a href="#" class="text-white"  data-toggle="dropdown">
                                                     <p class="align-content-around"> {{$loop->iteration}} - {{$comment->remark}}</p>
                                                     <i class="fa fa-angle-down"></i>
                                                 </a>
                                                 <ul class="dropdown-menu" role="menu">
-                                                    <li><a class="text-white" href="{{route('getResponseForm',$comment->id)}}">Response</a></li>
+                                                    <li><a href="{{route('getResponseForm',$comment->id)}}">Response</a></li>
                                                     @foreach($comment->responses as $response)
                                                         <li>{{$response->answer}}</li>
                                                     @endforeach
                                                 </ul>
                                             </li>
                                         @endforeach
+                                    </div>
+                                    <div class="form-group col-12">
+                                        <input type="text" readonly name="name" value="{{\Illuminate\Support\Facades\Auth::user()->name}}" class="form-control" placeholder="Name"/>
+                                        <input type="text" readonly name="email" value="{{\Illuminate\Support\Facades\Auth::user()->email}}" class="form-control" placeholder="Email"/>
                                         <input type="text" value ="{{old('remark')}}" name="remark" class="form-control" id="exampleInputName1" placeholder="Remark">
                                     </div>
                                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
@@ -60,5 +61,7 @@
                 </footer>
                 <!-- partial -->
             </div>
+        </div>
+    </div>
             <!-- main-panel ends -->
 @endsection

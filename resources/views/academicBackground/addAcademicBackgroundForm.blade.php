@@ -20,11 +20,11 @@
                                 @endif
                                 <div class="form-group">
                                     <label for="exampleInputName1">Start_date</label>
-                                    <input type="text" value ="{{old('start_date')}}" name="start_date" class="form-control" id="exampleInputName1" placeholder="Put just the year">
+                                    <input type="date" value ="{{old('start_date')}}" name="start_date" class="form-control" id="exampleInputName1" placeholder="Put just the year">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputName1">End_date</label>
-                                    <input type="text" value ="{{old('end_date')}}" name="end_date" class="form-control" id="exampleInputName1" placeholder="Put just the year">
+                                    <input type="date" value ="{{old('end_date')}}" name="end_date" class="form-control" id="exampleInputName1" placeholder="Put just the year">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputName1">Institute</label>

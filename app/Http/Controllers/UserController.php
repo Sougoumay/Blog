@@ -67,9 +67,4 @@ class UserController extends Controller
         return redirect()->route('admin.settings');
     }
 
-
-
-    // TODO changement complet de profil
-    // TODO Modifier la fonction de commentaire de l'admin
-    // TODO pareil que celui de client
 }
