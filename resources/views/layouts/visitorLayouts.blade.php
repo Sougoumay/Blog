@@ -87,13 +87,13 @@
                             </button>
 
                             <div id="navbar-collapse" class="collapse navbar-collapse">
-                                <ul class="nav navbar-nav mr-auto">
-                                    <li class="nav-item">
+                                <ul class="nav navbar-nav mr-auto" id="nav navbar-nav mr-auto">
+                                    <li class="nav-item active">
                                         <a class="nav-link" href="{{route('visitor.allArticle')}}">Articles</a>
                                     </li>
 
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{route('visitor.homePages')}}">HomePage</a>
+                                        <a class="nav-link" href="{{route('visitor.homePages')}}">About me</a>
                                     </li>
 
                                     <li class="nav-item">
@@ -137,8 +137,20 @@
     </section><!-- Feature are end -->
 
 
-
+</div>
 
 </body>
+
+<script type="text/javascript">
+    var btnContainer = document.getElementById("nav navbar-nav mr-auto");
+    var btns = btnContainer.getElementsByClassName("nav-item");
+    for(var i = 0; i< btns.length; i++){
+        btns[i].addEventListener('click', function(){
+            var current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active");
+            this.className += " active";
+        })
+    }
+</script>
 
 </html>

@@ -13,7 +13,7 @@
                                     <h5 class="card-title">Articles</h5>
                                     <u1>
                                         @foreach($articles as $article)
-                                            <a href="{{route('viewArticle',$article->id)}}">
+                                            <a href="{{route('viewArticle',$article->slug)}}">
                                                 <li>
                                                     <h1 class="card-title">{{$article->title}}</h1>
                                                     <img width="5%" height="5%" src="{{asset('/uploads/profile').'/'.$article->image}}"/>

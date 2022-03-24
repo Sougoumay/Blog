@@ -478,6 +478,11 @@ ul.list-check li:before {
   border: 0;
 }
 
+.nav > li > a:active {
+    color: darkgoldenrod;
+    background-color: darkgoldenrod;
+}
+
 .nav > li > a:focus,
 .nav > li > a:hover {
   background: none;
@@ -1755,7 +1760,7 @@ ul.navbar-nav > li.header-get-a-quote:hover > a:after {
   color: #fff;
 }
 
-/* Service box 
+/* Service box
 
 .ts-service-box .ts-service-icon i {
   font-size: 24px;

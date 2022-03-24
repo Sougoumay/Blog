@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-        Academic::create(
+        /**Academic::create(
             [
                 'start_date'=>'2012',
                 'end_date'=>'2016',
@@ -182,11 +182,12 @@ class DatabaseSeeder extends Seeder
                 'title'=>'FootBall',
                 'user_id'=>1
             ]
-        );*/
+        );
 
 
         Article::create([
             'title'=>'Intelligence Artificielle',
+            'slug'=>'intelligence_rtificielle',
             'image'=>'image_6217d341626475.71619067.jpg',
             'content'=>"En tant que référence en matière de gestion de données dans le cloud hybride, NetApp comprend l'importance
              de l'accès aux données, de leur gestion et de leur contrôle. NetApp® Data Fabric fournit un environnement de gestion
@@ -211,11 +212,13 @@ class DatabaseSeeder extends Seeder
                 domaines."
         ]);
 
-        /**
+
         Article::create(
             [
                 'title'=>'Cloud',
+                'slug'=>'cloud',
                 'image'=>'image_6219ee1084c688.49567152.jpg',
+                'visites'=>0,
                 'content'=>"Un cloud (« nuage ») est un ensemble de matériels, de raccordements réseau et de logiciels9 fournissant des services qu'individus et collectivités peuvent exploiter depuis n'importe où dans le monde10. Un basculement de tendance fait qu'au lieu d'obtenir de la puissance de calcul par acquisition de matériel et de logiciel, le consommateur se sert de puissance mise à sa disposition par un fournisseur via l'Internet10.
 
 Un nuage est caractérisé par plusieurs principes récurrents :
@@ -228,12 +231,14 @@ Le nuage (public, privé ou communautaire) bénéficie de technologies telles qu
 
 Parmi les services grand-public fournis en cloud computing figure le jeu à la demande (ou « jeu sur demande », gaming on demand (GoD) ou cloud gaming pour les anglophones). Il permet de jouer normalement à des jeux vidéo sur son écran d’ordinateur, alors que le ou les logiciels de jeu tournent sur des serveurs à distance, qui renvoient la vidéo de ce qui a été joué en lecture en continu (en anglais streaming). Le jeu est hébergé et stocké sur des serveurs, dont l'utilisateur ne connait pas la localisation ni les caractéristiques. Il ne nécessite plus de supports, comme les CD, ou de matériel, comme les consoles de jeux. Les joueurs doivent seulement posséder un ordinateur relié à Internet, et les périphériques requis (clavier, souris, manette de jeu...)."
             ]
-        );
+        );*/
 
         Article::create(
             [
-                'title'=>'IoT',
+                'title'=>'Internet des objets',
                 'image'=>'image_6219edf3e22c21.63946790.jpg',
+                'slug'=>'internet_des_objets',
+                'visites'=>0,
                 'content'=>"L'Internet des objets ou IdO (en anglais (the) Internet of Things ou IoT) est l'interconnexion entre l'Internet et des objets, des lieux et des environnements physiques. L'appellation désigne un nombre croissant d'objets connectés à Internet permettant ainsi une communication entre nos biens dits physiques et leurs existences numériques. Ces formes de connexions permettent de rassembler de nouvelles masses de données sur le réseau et donc, de nouvelles connaissances et formes de savoirs.
 
 Considéré comme la troisième évolution de l'Internet, baptisé Web 3.0 (parfois perçu comme la généralisation du Web des objets mais aussi comme celle du Web sémantique) qui fait suite à l'ère du Web social, l'Internet des objets revêt un caractère universel pour désigner des objets connectés aux usages variés, dans le domaine de la e-santé, de la domotique ou du quantified self.
@@ -248,6 +253,8 @@ Selon une équipe de l'ETH de Zurich, du fait des smartphones puis du nombre cro
             [
                 'title'=>'Cyber Securite',
                 'image'=>'image_6219ee66a5f0c8.40836650.jpg',
+                'slug'=>'cyber_securite',
+                'visites'=>0,
                 'content'=>"La cybersécurité, qui concerne la sécurité et la souveraineté numérique de chaque État-Nation, présente des enjeux économiques, stratégiques et politiques qui vont donc bien au-delà de la seule Sécurité des systèmes d'information. Elle concerne d'ailleurs aussi bien l'informatique de gestion, l'informatique industrielle, l'informatique embarquée que les objets connectés. La cybersécurité doit être appréhendée de manière holistique pour prendre en compte les aspects économiques, sociaux, éducatifs, juridiques, techniques, diplomatiques, militaires et de renseignement3. Excellence technique, adaptabilité et coopération sont essentielles dans ce domaine.
 
 Une stratégie nationale de cybersécurité va demander de la continuité politique et une vision à long terme. Des différentes publications des États semble se dégager un consensus reconnaissant la nécessité d'organiser et d'assurer la sécurité et la défense des systèmes techniques eux-mêmes, et celles des sociétés qui utilisent ces systèmes.
@@ -266,7 +273,7 @@ La maîtrise du patrimoine informationnel, constitué de documents et de donnée
 
 Au cœur des enjeux de sécurisation de la société numérique et en matière d'innovation, la cybersécurité devrait tirer parti des recherches dans le domaine des mégadonnées (big data) qui combineront apprentissage automatique et intelligence artificielle."
             ]
-        );*/
+        );
 
 
     }

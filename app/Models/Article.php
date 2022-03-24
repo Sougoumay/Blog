@@ -12,7 +12,10 @@ class Article extends Model
     protected $fillable = [
         'title',
         'content',
-        'image'
+        'image',
+        'tags',
+        'status',
+        'slug'
     ];
 
     public function remarks()

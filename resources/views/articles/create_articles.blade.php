@@ -18,13 +18,25 @@
                                         @endforeach
                                     </ul>
                                 @endif
-                                <div class="form-group background">
+                                <div class="form-group">
                                     <label >Title</label>
                                     <input type="text" value ="{{old('title')}}" name="title" class="form-control"  placeholder="Title">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleTextarea1">Content</label>
                                     <textarea name="content" value ="{{old('content')}}" class="form-control" id="my_summernote" rows="5"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Tag</label>
+                                    <input type="text" name="tags" value="{{old('tags')}}" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Status</label>
+                                    <select name="status">
+                                        <option value="Draft">Draft</option>
+                                        <option value="Planned">Planned</option>
+                                        <option value="Publish" selected>Publish</option>
+                                    </select>
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">

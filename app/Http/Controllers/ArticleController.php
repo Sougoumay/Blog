@@ -9,6 +9,7 @@ use App\Models\Article;
 use App\Helpers\UploadsFile;
 use App\Models\Remark;
 use App\Models\Responses;
+use Illuminate\Support\Str;
 
 class ArticleController extends Controller
 {
@@ -19,17 +20,46 @@ class ArticleController extends Controller
      */
     function createArticle(ArticleRequest $articleRequest)
     {
+        $title = $articleRequest->get('title');
+        $slug = Str::slug($title,'_');
        $photo = $articleRequest->file('image');
        if($photo) {
            $imageName = uniqid('image_',true).'.'.$photo->getClientOriginalExtension();
            $photo->move(UploadsFile::getUploadPAth('profile_photos'),$imageName);
        }
 
-       Article::create([
-           'image'=>$photo,
-           'title'=>$articleRequest->get('title'),
-           'content'=>$articleRequest->get('content')
-       ]);
+       $status = $articleRequest->get('status');
+       if($status=='Planned'){
+           Article::create([
+               'image'=>$photo,
+               'title'=>$title,
+               'content'=>$articleRequest->get('content'),
+               'status'=>$status,
+               'tags'=>$articleRequest->get('tags'),
+               'slug'=>$slug,
+               'published_at'=>$articleRequest->get('published_at')
+           ]);
+       } elseif ($status=="Draft"){
+           Article::create([
+               'image'=>$photo,
+               'title'=>$articleRequest->get('title'),
+               'content'=>$articleRequest->get('content'),
+               'tags'=>$articleRequest->get('tags'),
+               'status'=>$status,
+               'slug'=>$slug,
+               "published_at"=>null
+           ]);
+       }else {
+           Article::create([
+               'image'=>$photo,
+               'title'=>$articleRequest->get('title'),
+               'content'=>$articleRequest->get('content'),
+               'tags'=>$articleRequest->get('tags'),
+               'status'=>$status,
+               'slug'=>$slug,
+               'published_at'=>now()
+           ]);
+       }
 
        return redirect()->route('allArticle');
     }
@@ -40,11 +70,17 @@ class ArticleController extends Controller
         return view('articles.allArticle',compact('articles'));
     }
 
-    function viewArticle($id)
+    function viewArticle($article)
     {
-        $article = Article::with('remarks')->find($id);
+        $counter = Article::all()->count();
+        $articles = Article::with('remarks')->where('slug',$article)->first();
+        return view('articles.viewArticle',compact('articles','counter'));
+    }
 
-        return view('articles.viewArticle',compact('article'));
+    function findArticle($id){
+        $article = Article::find($id);
+        $slug = $article->slug;
+        return redirect()->route("viewArticle",$slug);
     }
 
     function createRemark(RemarkRequest $remarkRequest, $id)

@@ -41,8 +41,10 @@ Route::group(['prefix'=>'admin','middleware'=>'App\Http\Middleware\IsUser'], fun
     Route::get('/getAddSoftwareForm',[SkillController::class,'getAddSoftwareForm'])
         ->name('getAddSoftwareForm');
     Route::post('/addSoftware',[SkillController::class,'addSoftware'])->name('addSoftware');
-    Route::get('/viewArticle/{id}',[ArticleController::class,'viewArticle'])
-        ->name('viewArticle')->where(['id'=>'[0-9]+']);
+    Route::get('/viewArticle/{article:slug}',[ArticleController::class,'viewArticle'])
+        ->name('viewArticle');
+    Route::get('/findArticle/{id}',[ArticleController::class,'findArticle'])->name('findArticle')
+        ->where(['id'=>'[0-9]+']);
     Route::post('/createRemark/{id}',[ArticleController::class,'createRemark'])->name('createRemark')
         ->where(['id'=>'[0-9]+']);
     Route::get('/allArticle',[ArticleController::class,'allArticle'])->name('allArticle');
@@ -72,7 +74,14 @@ Route::group(['prefix'=>'visitor','middleware'=>'App\Http\Middleware\IsVisitor']
     Route::view('/contact','visitors.contact')->name('visitor.contact');
     Route::post('/createRemark/{id}',[VisitorController::class,'createRemark'])->name('visitor.createRemark')
         ->where(['id'=>'[0-9]+']);
+    Route::get('/sendEmail',[VisitorController::class,'sendEmail'])->name('visitor.sendEmail');
 });
+
+Route::get('/mail',[VisitorController::class,'sendEmail']);
+
+Route::view('/fouka','foukaBab');
+
+Route::view('/','visitors.accueil');
 
 Route::view('/layouts','layouts.main_layouts');
 
@@ -81,7 +90,7 @@ Route::view('/visitorLayouts','layouts.visitorLayouts');
 
 Route::view('/index','index');
 
-Route::get('/',[VisitorController::class,'allArticle']);
+//Route::get('/',[VisitorController::class,'allArticle']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [ArticleController::class,'allArticle'])
     ->name('dashboard');
