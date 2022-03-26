@@ -38,6 +38,10 @@
                                         <option value="Publish" selected>Publish</option>
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label>Planned_at</label>
+                                    <input type="date" name="planned_at" value="{{old('planned_at')}}" class="form-control"/>
+                                </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Image</span>

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('articles', function (Blueprint $table) {
-            $table->date('published_at')->default(null);
+            $table->date('planned_at')->nullable();
         });
     }
 
@@ -25,8 +25,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('articles', function (Blueprint $table) {
-            $table->date('published_at')->default(null);
-        });
+        Schema::dropColumns('articles','planned_at');
     }
 };

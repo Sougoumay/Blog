@@ -9,6 +9,8 @@ use App\Models\Article;
 use App\Helpers\UploadsFile;
 use App\Models\Remark;
 use App\Models\Responses;
+use App\Models\Tag;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class ArticleController extends Controller
@@ -20,48 +22,81 @@ class ArticleController extends Controller
      */
     function createArticle(ArticleRequest $articleRequest)
     {
-        $title = $articleRequest->get('title');
-        $slug = Str::slug($title,'_');
-       $photo = $articleRequest->file('image');
-       if($photo) {
-           $imageName = uniqid('image_',true).'.'.$photo->getClientOriginalExtension();
-           $photo->move(UploadsFile::getUploadPAth('profile_photos'),$imageName);
-       }
+        DB::transaction(function() use($articleRequest) {
+            $title = $articleRequest->get('title');
+            $slug = Str::slug($title,'_');
+            $photo = $articleRequest->file('image');
+            if($photo) {
+                $imageName = uniqid('image_',true).'.'.$photo->getClientOriginalExtension();
+                $photo->move(UploadsFile::getUploadPAth('profile_photos'),$imageName);
+            }
 
-       $status = $articleRequest->get('status');
-       if($status=='Planned'){
-           Article::create([
-               'image'=>$photo,
-               'title'=>$title,
-               'content'=>$articleRequest->get('content'),
-               'status'=>$status,
-               'tags'=>$articleRequest->get('tags'),
-               'slug'=>$slug,
-               'published_at'=>$articleRequest->get('published_at')
-           ]);
-       } elseif ($status=="Draft"){
-           Article::create([
-               'image'=>$photo,
-               'title'=>$articleRequest->get('title'),
-               'content'=>$articleRequest->get('content'),
-               'tags'=>$articleRequest->get('tags'),
-               'status'=>$status,
-               'slug'=>$slug,
-               "published_at"=>null
-           ]);
-       }else {
-           Article::create([
-               'image'=>$photo,
-               'title'=>$articleRequest->get('title'),
-               'content'=>$articleRequest->get('content'),
-               'tags'=>$articleRequest->get('tags'),
-               'status'=>$status,
-               'slug'=>$slug,
-               'published_at'=>now()
-           ]);
-       }
+            $status = $articleRequest->get('status');
+            if($status=='Planned'){
+                $article = Article::create([
+                    'image'=>$photo,
+                    'title'=>$title,
+                    'content'=>$articleRequest->get('content'),
+                    'status'=>$status,
+                    'slug'=>$slug,
+                    'planned_at'=>$articleRequest->get('planned_at')
+                ]);
+            } elseif ($status=="Draft"){
+                $article = Article::create([
+                    'image'=>$photo,
+                    'title'=>$articleRequest->get('title'),
+                    'content'=>$articleRequest->get('content'),
+                    'status'=>$status,
+                    'slug'=>$slug
+                ]);
+            }else {
+                $article = Article::create([
+                    'image'=>$photo,
+                    'title'=>$articleRequest->get('title'),
+                    'content'=>$articleRequest->get('content'),
+                    'status'=>$status,
+                    'slug'=>$slug,
+                    'planned_at'=>now()
+                ]);
+            }
+
+            $tags = $articleRequest->get('tags');
+            $tags = explode(',',$tags);
+            foreach($tags as $tag){
+
+                $tag_id = Tag::create([
+                    'name'=>$tag,
+                ]);
+                $article->tags()->attach($tag_id);
+            };
+        }
+        );
+
+
+
+
+//        $tags_to_create = [];
+//        foreach ($tags as $tag){
+//            $tags_to_create[] = ['name'=>$tag, 'slug'=>Str::slug($tag)];
+//        }
+//        Tag::insert($tags_to_create);
+//       $tags = $articleRequest->get('tags');
+//       $slug = Str::slug($tags, '_');
+//        $tag = Tag::create(
+//           [
+//           'name'=>$tags,
+//           'slug'=>$slug
+//           ]
+//       );
+//       $article->$tag->attach();
 
        return redirect()->route('allArticle');
+    }
+
+    function findPost(string $key)
+    {
+        $articles = DB::table('articles')->whereJsonContains('slug',$key)->simplePaginate(3);
+        return view('articles.allArticle', compact('articles'));
     }
 
     function allArticle()
